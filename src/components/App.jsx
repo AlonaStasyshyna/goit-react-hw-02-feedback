@@ -1,19 +1,20 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import { Component } from "react";
+import { Section } from "./Section/Section";
+import { FeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
+import { Statistics } from "./Statistics/Statistics";
+import { Notification } from "./Notification/Notification";
+
+export class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  }
+
+  onLeaveFeedback = (e) => {
+    this.setState((prevState) => ({
+      [e.target.textContent.toLowerCase()]: prevState[e.target.textContent.toLowerCase()] + 1
+    }))
   }
 
   countTotalFeedback = ({good, neutral, bad}) => (good + neutral + bad)
